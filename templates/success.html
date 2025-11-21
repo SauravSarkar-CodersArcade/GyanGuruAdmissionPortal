@@ -1,0 +1,56 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html>&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Application Submitted</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body class="bg-success text-white text-center d-flex justify-content-center align-items-center" style="height: 100vh;">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h1 class="mb-3">🎉 Thank You!</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>Your application has been submitted successfully.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>We will contact you shortly via WhatsApp or Email.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;        <a href="/" class="btn btn-light mt-3">Submit Another</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Application Submitted</title>-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<!--</head>-->
+<!--<body class="bg-success text-white text-center d-flex justify-content-center align-items-center" style="height: 100vh;">-->
+<!--    <div>-->
+<!--        <h1 class="mb-3">🎉 Thank You!</h1>-->
+<!--        <p>Your application has been submitted successfully.</p>-->
+<!--        <p>We will contact you shortly via WhatsApp or Email.</p>-->
+<!--        <a href="/" class="btn btn-light mt-3">Submit Another</a>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Application Submitted</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-success text-white text-center d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="container">
+        <!-- Gorgeous logo/header for branding -->
+        <div class="header-container" style="margin-top: 30px;">
+          <img src="{{ url_for('static', filename='gyan-guru.png') }}" alt="Gyan Guru Logo" class="logo">
+          <span class="header-title">🧠 Gyan Guru Admission System</span>
+        </div>
+        <div style="min-height: 40vh;">
+            <h1 class="mb-3">🎉 Thank You!</h1>
+            <p>Your application has been submitted successfully.</p>
+            <p>We will contact you shortly via WhatsApp or Email.</p>
+            <a href="/" class="btn btn-light mt-3">Submit Another</a>
+        </div>
+    </div>
+</body>
+</html>

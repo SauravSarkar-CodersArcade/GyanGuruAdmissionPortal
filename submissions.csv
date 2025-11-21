@@ -1,0 +1,24 @@
+id,course,roll_no,score,name,father,mother,dob,mobile,email,address,previous_appearance,previous_roll,religion,school_10,school_11,school_12,bank_name,account_name,ifsc,branch,account_no,created_at
+1,MBBS,3115411436,175,Saurav Sarkar,Subhash Sarkar,Nandini Sarkar,1987-10-17,8822185799,codersarcade@gmail.com,"33 3rd floor, Coders Arcade, Sai Lotus, 5th Stage,
+Rajarajeshwari Nagar, Bengaluru, Karnataka 560098",No,,Hindu,"LSS, BNC","LSS, BNC","LSS, BNC",ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-07-07 18:14:41
+2,MBBS,3115411487,243,hfhj,ky,uktt,2025-07-16,9998887778,gfhfhjg@gmail.com,ghfrhgfr,Yes,uttuy,hghjg,fhfhjghgkjhkj,iuyuiyui,iutuiyjkg,kuyuiyu,uyyuykh,uiyuiyiu,iuyuiy,7767iutug,2025-07-07 18:20:08
+3,MBBS,3115411436,150,Kaushal,Saran,Silpa,2025-09-18,8822185799,codersarcade@gmail.com,"33 3rd floor, Coders Arcade, Sai Lotus, 5th Stage,
+Rajarajeshwari Nagar, Bengaluru, Karnataka 560098",No,,Hindu,LSS,LSS,LSS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-09-19 12:00:30
+4,MBBS,3115411434,451,SAURAV,Subhash Sarkar,Nandini Sarkar,2001-10-24,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",Yes,2022,Hindu,"LSS, Assam","MBRS, Assam","MBRS, Assam",ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501604,2025-10-30 11:53:00
+5,MBBS,3115411430,450,SAURAV JYOTI,Subhash Sarkar,Nandini Sarkar,2002-02-21,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",No,,Hindu,LSS,MBRS,MBRS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 12:01:06
+6,MBBS,3115411480,435,SAURAV J S,Subhash Sarkar,Nandini Sarkar,2002-10-17,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",Yes,2022,Hindu,LSS,MBRS,MBRS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 12:37:14
+7,DENTAL,3115411436,234,JYOTI SARKAR,Subhash Sarkar,Nandini Sarkar,2004-02-12,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",Yes,2022,Hindu,LSS,LSS,LSS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 12:42:00
+8,MBBS,3115411400,432,SAURAV JYOTI SARKAR,Subhash Sarkar,Nandini Sarkar,2000-12-12,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",No,,Hindu,LSS,MBRS,MBRS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 13:19:54
+9,MBBS,3115411455,234,SAURAV JYOTI SARKAR,Subhash Sarkar,Nandini Sarkar,2003-12-21,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",No,,Hindu,LSS,JSS,RNS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 13:24:30
+10,MBBS,3115411487,234,SAURAV JYOTI SARKAR,Subhash Sarkar,Nandini Sarkar,2004-03-12,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",Yes,2022,Hindu,LSS,JSS,GSSS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 16:25:51
+11,MBBS,3115411567,543,SAURAV JYOTI SARKAR,Subhash Sarkar,uktt,2021-04-23,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",Yes,2022,Hindu,kutuk,kjgkuj,iouio,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 16:31:09
+12,MBBS,3115410007,345,SAURAV JYOTI SARKAR,Subhash Sarkar,Nandini Sarkar,2005-03-12,8822185799,ronniesaurav17@gmail.com,"Japorigog
+44",Yes,2022,Hindu,LSS,JSS,GSS,ICICI,Saurav Sarkar,ICIC0004938,RR Nagar,245601501609,2025-10-30 16:54:11

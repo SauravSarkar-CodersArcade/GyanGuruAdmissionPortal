@@ -1,0 +1,202 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html>&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>KEA 2025 Admission - Step 2</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body class="bg-light">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="container mt-5">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h2 class="mb-4 text-center">Step 2: Personal Details</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="card p-4 shadow">&ndash;&gt;-->
+<!--&lt;!&ndash;        <form method="POST" action="{{ url_for('form_step3') }}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Student Name:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="text" name="name" class="form-control" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Father Name:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="text" name="father" class="form-control" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Mother Name:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="text" name="mother" class="form-control" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Date of Birth:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="date" name="dob" class="form-control" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Mobile Number:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="tel" name="mobile" class="form-control" pattern="[0-9]{10}" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Email ID:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="email" name="email" class="form-control" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Full Address with Pin Code:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <textarea name="address" class="form-control" required></textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Have you appeared for NEET UG in a previous year?</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <select name="previous" class="form-select" required>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="">&#45;&#45; Select &#45;&#45;</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="Yes">Yes</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <option value="No">No</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                </select>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>If Yes, Previous Year NEET Roll No:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="text" name="prev_roll" class="form-control">&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <div class="mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label>Religion:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="text" name="religion" class="form-control" required>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <button type="submit" class="btn btn-primary">Next →</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>KEA 2025 Admission - Step 2</title>-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<!--</head>-->
+<!--<body class="bg-light">-->
+<!--<div class="container mt-5">-->
+<!--    <h2 class="mb-4 text-center">Step 2: Personal Details</h2>-->
+<!--    <div class="card p-4 shadow">-->
+<!--        <form method="POST" action="{{ url_for('form_step2', return=request.args.get('return')) }}">-->
+<!--            <div class="mb-3">-->
+<!--                <label>Student Name:</label>-->
+<!--                <input type="text" name="name" class="form-control" required value="{{ name|default('') }}">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Father Name:</label>-->
+<!--                <input type="text" name="father" class="form-control" required value="{{ father|default('') }}">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Mother Name:</label>-->
+<!--                <input type="text" name="mother" class="form-control" required value="{{ mother|default('') }}">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Date of Birth:</label>-->
+<!--                <input type="date" name="dob" class="form-control" required value="{{ dob|default('') }}">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Mobile Number:</label>-->
+<!--                <input type="tel" name="mobile" class="form-control" pattern="[0-9]{10}" required value="{{ mobile|default('') }}">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Email ID:</label>-->
+<!--                <input type="email" name="email" class="form-control" required value="{{ email|default('') }}">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Full Address with Pin Code:</label>-->
+<!--                <textarea name="address" class="form-control" required>{{ address|default('') }}</textarea>-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Have you appeared for NEET UG in a previous year?</label>-->
+<!--                <select name="previous" class="form-select" required>-->
+<!--                    <option value="">&#45;&#45; Select &#45;&#45;</option>-->
+<!--                    <option value="Yes" {% if previous=='Yes' %}selected{% endif %}>Yes</option>-->
+<!--                    <option value="No" {% if previous=='No' %}selected{% endif %}>No</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>If Yes, Previous Year NEET Roll No:</label>-->
+<!--                <input type="text" name="prev_roll" class="form-control" value="{{ prev_roll|default('') }}">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label>Religion:</label>-->
+<!--                <input type="text" name="religion" class="form-control" required value="{{ religion|default('') }}">-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-primary">Next →</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KEA 2025 Admission - Step 2</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <!-- Branded header -->
+    <div class="header-container">
+      <img src="{{ url_for('static', filename='gyan-guru.png') }}" alt="Gyan Guru Logo" class="logo">
+      <span class="header-title">🧠 Gyan Guru Admission Form</span>
+    </div>
+    <div class="card p-4 shadow">
+        <h2 class="mb-3 text-center">Step 2: Personal Details</h2>
+        <form method="POST" action="{{ url_for('form_step2', return=request.args.get('return')) }}">
+            <div class="mb-3">
+                <label>Student Name:</label>
+                <input type="text" name="name" class="form-control" required value="{{ name|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Father Name:</label>
+                <input type="text" name="father" class="form-control" required value="{{ father|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Mother Name:</label>
+                <input type="text" name="mother" class="form-control" required value="{{ mother|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Date of Birth:</label>
+                <input type="date" name="dob" class="form-control" required value="{{ dob|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Mobile Number:</label>
+                <input type="tel" name="mobile" class="form-control" pattern="[0-9]{10}" required value="{{ mobile|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Email ID:</label>
+                <input type="email" name="email" class="form-control" required value="{{ email|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Full Address with Pin Code:</label>
+                <textarea name="address" class="form-control" required>{{ address|default('') }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label>Have you appeared for NEET UG in a previous year?</label>
+                <select name="previous" class="form-select" required>
+                    <option value="">-- Select --</option>
+                    <option value="Yes" {% if previous=='Yes' %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if previous=='No' %}selected{% endif %}>No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>If Yes, Previous Year NEET Roll No:</label>
+                <input type="text" name="prev_roll" class="form-control" value="{{ prev_roll|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Religion:</label>
+                <input type="text" name="religion" class="form-control" required value="{{ religion|default('') }}">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Next →</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

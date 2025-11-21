@@ -1,0 +1,210 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KEA 2025 Admission - Step 4</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='ajax_file_upload.js') }}"></script>
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <!-- Branded logo/header -->
+    <div class="header-container">
+      <img src="{{ url_for('static', filename='gyan-guru.png') }}" alt="Gyan Guru Logo" class="logo">
+      <span class="header-title">🧠 Gyan Guru Admission Form</span>
+    </div>
+    <h2 class="mb-4 text-center">Step 4: Bank Details & Document Upload</h2>
+
+    <!-- Edit Navigation Buttons -->
+    <div class="mb-3 text-center">
+        <a href="{{ url_for('form_step1', return='step4') }}" class="btn btn-outline-secondary btn-sm mx-1">Edit Step 1: Course/NEET</a>
+        <a href="{{ url_for('form_step2', return='step4') }}" class="btn btn-outline-secondary btn-sm mx-1">Edit Step 2: Personal Details</a>
+        <a href="{{ url_for('form_step3', return='step4') }}" class="btn btn-outline-secondary btn-sm mx-1">Edit Step 3: Academic Info</a>
+    </div>
+
+    <div class="card p-4 shadow">
+        <form id="step4form" method="POST" action="{{ url_for('form_step4') }}">
+            <!-- Hidden fields from previous steps -->
+            {% for field in ['course','roll_no','score','name','father','mother','dob','mobile','email','address','previous','prev_roll','religion','school_10','school_11','school_12'] %}
+            <input type="hidden" name="{{ field }}" value="{{ [field]|first }}">
+            {% endfor %}
+
+            <!-- Bank Details -->
+            <h5 class="mb-3">Bank Details</h5>
+            <div class="mb-3">
+                <label>Name of the Beneficiary:</label>
+                <input type="text" name="account_name" class="form-control" required value="{{ account_name|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Bank Name:</label>
+                <input type="text" name="bank_name" class="form-control" required value="{{ bank_name|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Bank IFSC Code:</label>
+                <input type="text" name="ifsc" class="form-control" required value="{{ ifsc|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Bank Branch Name:</label>
+                <input type="text" name="branch" class="form-control" required value="{{ branch|default('') }}">
+            </div>
+            <div class="mb-3">
+                <label>Bank Account Number:</label>
+                <input type="text" name="account_no" class="form-control" required value="{{ account_no|default('') }}">
+            </div>
+
+            <!-- File Uploads (AJAX draft upload) -->
+            <h5 class="mt-4 mb-3">Upload Documents (PDFs & JPGs only)</h5>
+
+            {% set file_fields = [
+                ('marks_10', '10th Std Marks Card (PDF only)', '.pdf'),
+                ('marks_12', '12th Std Marks Card (PDF only)', '.pdf'),
+                ('scorecard', 'NEET UG 2025 Score Card (PDF only)', '.pdf'),
+                ('aadhar', 'Aadhar Card (PDF only)', '.pdf'),
+                ('photo', 'Passport Size Photo (JPG only)', '.jpg,.jpeg'),
+                ('signature', 'Signature (JPG only)', '.jpg,.jpeg'),
+                ('thumb', 'Left Thumb Impression (JPG only)', '.jpg,.jpeg')
+            ] %}
+
+            {% for field, label, accept in file_fields %}
+            <div class="mb-3">
+                <label>{{ label }}</label>
+                <input type="file" name="{{ field }}" class="form-control"
+                       accept="{{ accept }}"
+                       onchange="uploadFile(this, '{{ field }}')">
+                <div class="file-status text-success small mt-1" id="file_status_{{ field }}">
+                    {% if temp_files[field] %}
+                        Already uploaded: {{ temp_files[field] }}
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="mb-2 text-danger small">
+                * Each document is uploaded instantly & saved as a draft as soon as you select! <br>
+                Already uploaded files will be kept even if you leave or edit other steps.
+            </div>
+            <!-- Preview and Submit Buttons -->
+            <button type="submit" class="btn btn-info mt-3" name="action" value="preview" id="previewBtn">Preview</button>
+            <button type="submit" formaction="{{ url_for('submit') }}" class="btn btn-success mt-3 ms-2" name="action" value="submit">Confirm & Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal for Preview: Full Content and Edit Links -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Complete Admission Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-2 text-end">
+          <a href="{{ url_for('form_step1', return='step4') }}" class="btn btn-outline-primary btn-sm mx-1">Edit Step 1</a>
+          <a href="{{ url_for('form_step2', return='step4') }}" class="btn btn-outline-primary btn-sm mx-1">Edit Step 2</a>
+          <a href="{{ url_for('form_step3', return='step4') }}" class="btn btn-outline-primary btn-sm mx-1">Edit Step 3</a>
+        </div>
+        <h6 class="mb-2 text-primary">Course & NEET Details</h6>
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>Course:</strong> <span id="p_course">{{ course|default("") }}</span></p>
+            <p><strong>NEET Roll No:</strong> <span id="p_roll_no">{{ roll_no|default("") }}</span></p>
+            <p><strong>NEET Score:</strong> <span id="p_score">{{ score|default("") }}</span></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Name:</strong> <span id="p_name">{{ name|default("") }}</span></p>
+            <p><strong>Date of Birth:</strong> <span id="p_dob">{{ dob|default("") }}</span></p>
+            <p><strong>Father:</strong> <span id="p_father">{{ father|default("") }}</span></p>
+            <p><strong>Mother:</strong> <span id="p_mother">{{ mother|default("") }}</span></p>
+            <p><strong>Mobile:</strong> <span id="p_mobile">{{ mobile|default("") }}</span></p>
+            <p><strong>Email:</strong> <span id="p_email">{{ email|default("") }}</span></p>
+            <p><strong>Religion:</strong> <span id="p_religion">{{ religion|default("") }}</span></p>
+            <p><strong>Address:</strong> <span id="p_address">{{ address|default("") }}</span></p>
+          </div>
+        </div>
+        <hr>
+        <h6 class="mb-2 text-primary">Academic & Bank Details</h6>
+        <p><strong>Have you appeared for NEET UG previously?</strong> <span id="p_previous">{{ previous|default("") }}</span></p>
+        <p><strong>Previous NEET Roll No:</strong> <span id="p_prev_roll">{{ prev_roll|default("") }}</span></p>
+        <p><strong>10th School:</strong> <span id="p_school_10">{{ school_10|default("") }}</span></p>
+        <p><strong>11th School:</strong> <span id="p_school_11">{{ school_11|default("") }}</span></p>
+        <p><strong>12th School:</strong> <span id="p_school_12">{{ school_12|default("") }}</span></p>
+        <hr>
+        <h6 class="mb-2 text-success">Bank Details</h6>
+        <p><strong>Account Name:</strong> <span id="p_account_name">{{ account_name|default("") }}</span></p>
+        <p><strong>Bank Name:</strong> <span id="p_bank_name">{{ bank_name|default("") }}</span></p>
+        <p><strong>IFSC:</strong> <span id="p_ifsc">{{ ifsc|default("") }}</span></p>
+        <p><strong>Branch:</strong> <span id="p_branch">{{ branch|default("") }}</span></p>
+        <p><strong>Account No:</strong> <span id="p_account_no">{{ account_no|default("") }}</span></p>
+        <hr>
+        <h6 class="mb-2 text-warning">Uploaded Documents</h6>
+        <ul>
+        {% for field, label, accept in file_fields %}
+          <li>
+              {{ label }}:
+              <span class="fw-bold">
+                {% if temp_files[field] %}
+                  Uploaded: {{ temp_files[field] }}
+                {% else %}
+                  Not uploaded yet!
+                {% endif %}
+              </span>
+          </li>
+        {% endfor %}
+        </ul>
+        <hr>
+        <small class="text-muted">Carefully verify your details and documents before confirming. You can edit any detail before submitting.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Optional: Populate modal for instant client-side preview (before POST)
+document.getElementById('previewBtn').onclick = function() {
+  function fillPreview(id, name) {
+    document.getElementById(id).innerText = document.querySelector('[name="'+name+'"]').value;
+  }
+  let fields = [
+    ['p_course', 'course'],
+    ['p_roll_no', 'roll_no'],
+    ['p_score', 'score'],
+    ['p_name', 'name'],
+    ['p_father', 'father'],
+    ['p_mother', 'mother'],
+    ['p_dob', 'dob'],
+    ['p_mobile', 'mobile'],
+    ['p_email', 'email'],
+    ['p_religion', 'religion'],
+    ['p_address', 'address'],
+    ['p_previous', 'previous'],
+    ['p_prev_roll', 'prev_roll'],
+    ['p_school_10', 'school_10'],
+    ['p_school_11', 'school_11'],
+    ['p_school_12', 'school_12'],
+    ['p_account_name', 'account_name'],
+    ['p_bank_name', 'bank_name'],
+    ['p_ifsc', 'ifsc'],
+    ['p_branch', 'branch'],
+    ['p_account_no', 'account_no']
+  ];
+  fields.forEach(function(arr){
+    fillPreview(arr[0], arr[1]);
+  });
+};
+
+// Show preview modal automatically after POST Preview (triggered by Flask passing show_preview)
+window.onload = function() {
+  {% if show_preview %}
+  var modal = new bootstrap.Modal(document.getElementById('previewModal'));
+  setTimeout(function(){ modal.show(); }, 300);
+  {% endif %}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
