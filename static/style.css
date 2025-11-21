@@ -357,3 +357,68 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-gradient);
 }
+
+/* Compact document button group in table */
+.table td .btn-info {
+  margin-bottom: 4px;
+  margin-right: 2px;
+  padding: 0.28rem 0.85rem;
+  font-size: 0.95rem;
+  border-radius: 1.1rem;
+}
+
+/* Flex layout for documents cell, wraps buttons nicely on small screens */
+td.d-flex.flex-wrap.gap-1 {
+  gap: 4px;
+}
+
+/* Adjust table padding/font-size for small screens */
+@media (max-width: 750px) {
+  .table td, .table th {
+    font-size: 0.89rem;
+    padding: 0.4rem 0.3rem;
+  }
+}
+
+.docs-btn-group {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.docs-btn {
+  border-radius: 1.1rem;
+  border: 2px solid #56ccf2;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.3rem 0.95rem;
+  background: white;
+  color: #389bf4;
+  transition: 0.16s;
+  box-shadow: 0 2px 8px rgba(56, 155, 244, 0.11);
+}
+
+.docs-btn:hover {
+  background: #56ccf2;
+  color: #fff;
+  border-color: #389bf4;
+  box-shadow: 0 2px 14px rgba(56, 155, 244, 0.21);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 780px) {
+  .docs-btn-group {
+    gap: 4px;
+  }
+  .docs-btn {
+    padding: 0.22rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+.docs-btn {
+  width: 62px;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
